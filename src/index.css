@@ -22,4 +22,8 @@ body {
     .active-link {
         @apply bg-info text-white text-sm font-semibold rounded-md px-4 py-1;
     }
+
+    .chart-wrapper {
+        @apply bg-coal rounded-lg p-3 w-full;
+    }
 }

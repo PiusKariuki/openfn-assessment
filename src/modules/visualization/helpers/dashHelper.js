@@ -9,7 +9,7 @@ export const getCountriesWithProjects = (data)=>{
     }, []);
 }
 
-export const getWorkers = ({sector =null, gender}) =>{
+export const getWorkers = ({sector =null, gender}) => {
     if(!sector){
         return database.volunteers.filter(item => item.gender === gender)
     }
@@ -55,4 +55,42 @@ export const resetData = () => {
         femaleWorkers: getWorkers({gender:"female"}),
         manHours: getManHours({})
     }
+}
+
+export const getTopManHoursCompanies = () =>{
+    let logsByProjectDesc = database.logs.reduce((acc, curr)=> {
+
+        const project = database.projects.find(project => project.id === curr.project)
+
+        if(acc.some(log => log.project.id === curr.project)){
+            acc = acc.map(log => log.project.id === curr.project ? ({...log, hours: log.hours + curr.duration}): ({...log}))
+            return acc;
+        }
+        acc.push({
+            project,
+            hours: curr.duration,
+        })
+        return acc
+    }, []);
+
+    return logsByProjectDesc
+}
+
+export const getEmployeesPerCompany = () => {
+    let logsByProjectDesc = database.logs.reduce((acc, curr)=> {
+
+        const project = database.projects.find(project => project.id === curr.project)
+
+        if(acc.some(log => log.project.id === curr.project)){
+            acc = acc.map(log => log.project.id === curr.project ? ({...log, employees: log.employees + 1}): ({...log}))
+            return acc;
+        }
+        acc.push({
+            project,
+            employees: 1,
+        })
+        return acc
+    }, []);
+
+    return logsByProjectDesc
 }

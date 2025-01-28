@@ -16,7 +16,7 @@ const VisualizationParent = () => {
         countriesWithProjects: getCountriesWithProjects(data.projects),
         maleWorkers: getWorkers({gender:"male"}),
         femaleWorkers: getWorkers({gender:"female"}),
-        manHours: getManHours({})
+        manHours: getManHours({}),
     });
 
     const [filters, setFilters] = useState({

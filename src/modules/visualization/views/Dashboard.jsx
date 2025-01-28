@@ -3,6 +3,7 @@ import {useContext} from "react";
 import {DataContext} from "../parent/VisualizationParent.jsx";
 import StatCard from "../components/StatCard.jsx";
 import {useDashboard} from "../hooks/useDashboard.js";
+import {DashboardBody} from "../components/DashboardBody.jsx";
 
 const Dashboard = () => {
     const {
@@ -33,13 +34,13 @@ const Dashboard = () => {
             subStat: `${(maleWorkers.length / (maleWorkers.length + femaleWorkers.length) * 100).toFixed(2)}%`,
         },
         {
-            title: "Females",
+            title: "Female workers",
             stat: femaleWorkers.length,
             subStat: `${(femaleWorkers.length / (maleWorkers.length + femaleWorkers.length) * 100).toFixed(2)}%`,
         },
         {
             title: "Man hours",
-            stat: manHours * 8,
+            stat: manHours,
         },
     ];
 
@@ -49,10 +50,16 @@ const Dashboard = () => {
             <div className="flex w-full">
                 <FNSelect value={filters.sector} label="Sectors" options={sectors} changeHandler={handleSectorChange}/>
             </div>
+
             <div className="flex w-full justify-between gap-3">
                 {stats.map(stat => (
                     <StatCard key={stat.title} {...stat} />
                 ))}
+            </div>
+
+
+            <div className="flex flex-col w-full">
+                <DashboardBody />
             </div>
         </div>
     )
