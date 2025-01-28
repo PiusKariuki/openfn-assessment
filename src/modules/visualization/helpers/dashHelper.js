@@ -58,12 +58,15 @@ export const resetData = () => {
 }
 
 export const getTopManHoursCompanies = () =>{
-    let logsByProjectDesc = database.logs.reduce((acc, curr)=> {
+    return database.logs.reduce((acc, curr) => {
 
         const project = database.projects.find(project => project.id === curr.project)
 
-        if(acc.some(log => log.project.id === curr.project)){
-            acc = acc.map(log => log.project.id === curr.project ? ({...log, hours: log.hours + curr.duration}): ({...log}))
+        if (acc.some(log => log.project.id === curr.project)) {
+            acc = acc.map(log => log.project.id === curr.project ? ({
+                ...log,
+                hours: log.hours + curr.duration
+            }) : ({...log}))
             return acc;
         }
         acc.push({
@@ -71,18 +74,19 @@ export const getTopManHoursCompanies = () =>{
             hours: curr.duration,
         })
         return acc
-    }, []);
-
-    return logsByProjectDesc
+    }, [])
 }
 
 export const getEmployeesPerCompany = () => {
-    let logsByProjectDesc = database.logs.reduce((acc, curr)=> {
+    return database.logs.reduce((acc, curr) => {
 
         const project = database.projects.find(project => project.id === curr.project)
 
-        if(acc.some(log => log.project.id === curr.project)){
-            acc = acc.map(log => log.project.id === curr.project ? ({...log, employees: log.employees + 1}): ({...log}))
+        if (acc.some(log => log.project.id === curr.project)) {
+            acc = acc.map(log => log.project.id === curr.project ? ({
+                ...log,
+                employees: log.employees + 1
+            }) : ({...log}))
             return acc;
         }
         acc.push({
@@ -90,7 +94,5 @@ export const getEmployeesPerCompany = () => {
             employees: 1,
         })
         return acc
-    }, []);
-
-    return logsByProjectDesc
+    }, [])
 }

@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar.jsx";
 import {createContext, useEffect, useState} from "react";
 import data from "../../../shared/data/data.json"
 import {getCountriesWithProjects, getManHours, getWorkers, resetData} from "../helpers/dashHelper.js";
+import CompanyProfiles from "../views/CompanyProfile.jsx";
 
 export const DataContext = createContext(null);
 
@@ -50,6 +51,7 @@ const VisualizationParent = () => {
                 <Sidebar/>
                 <Routes>
                     <Route path="/" element={<Dashboard/>}/>
+                    <Route path="/profiles" element={<CompanyProfiles/>}/>
                 </Routes>
             </DataContext.Provider>
         </div>

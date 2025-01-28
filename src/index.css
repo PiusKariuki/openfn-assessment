@@ -15,8 +15,8 @@ body {
 }
 
 @layer components {
-    .link {
-        @apply px-4 py-2;
+    .inactive-link {
+        @apply px-4 py-1 text-sm text-white font-semibold;
     }
 
     .active-link {
