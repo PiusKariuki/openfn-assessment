@@ -19,7 +19,7 @@ export const useCharts = () => {
                 enabled: false
             },
             xaxis: {
-                categories: employeesPerCompany.map(item=> item.project.name.length > 8 ? `${item.project.name.subtring(0, 8)}...` : item.project.name),
+                categories: hoursPerCompany.map(item=> item.project.name.length > 8 ? `${item.project.name.substring(0, 8)}...` : item.project.name),
                 title: {
                     text: "Projects",
                     style: {
@@ -91,7 +91,7 @@ export const useCharts = () => {
                 enabled: false
             },
             xaxis: {
-                categories: employeesPerCompany.map(item=> item.project.name.length > 8 ? `${item.project.name.subtring(0, 8)}...` : item.project.name),
+                categories: employeesPerCompany.map(item=> item.project.name.length > 8 ? `${item.project.name.substring(0, 8)}...` : item.project.name),
                 title: {
                     text: "Project",
                     style: {
@@ -141,11 +141,11 @@ export const useCharts = () => {
         series: [
             {
                 name: 'hours',
-                data: hoursPerCompany.map(item=> item.hours)
+                data: employeesPerCompany.map(item=> item.employees)
             }
         ]
     }
 
 
-    return {hoursPerCompanyProps}
+    return {hoursPerCompanyProps, employeePerCompanyProps}
 }
