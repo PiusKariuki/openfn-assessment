@@ -29,12 +29,12 @@ const Dashboard = () => {
             stat: countriesWithProjects?.length
         },
         {
-            title: "Male workers",
+            title: "Male volunteers",
             stat: maleWorkers.length,
             subStat: `${(maleWorkers.length / (maleWorkers.length + femaleWorkers.length) * 100).toFixed(2)}%`,
         },
         {
-            title: "Female workers",
+            title: "Female volunteers",
             stat: femaleWorkers.length,
             subStat: `${(femaleWorkers.length / (maleWorkers.length + femaleWorkers.length) * 100).toFixed(2)}%`,
         },

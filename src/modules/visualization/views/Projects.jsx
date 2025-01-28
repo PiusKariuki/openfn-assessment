@@ -1,15 +1,15 @@
 import DataTable from 'react-data-table-component';
 import data from "../../../shared/data/data.json"
-import {NavLink} from "react-router";
+import {NavLink, useNavigate} from "react-router";
 import {employeesPerProject} from "../helpers/profileHelper.js";
 
-const CompanyProfiles = () => {
-    console.log("data", data.projects)
+const Projects = () => {
 
+    const navigate = useNavigate()
     const headers = [
         {
           name: "Name",
-          selector: row => <NavLink className="font-semibold hover:underline hover:text-info-light" to="/profiles">{row.name}</NavLink>
+          selector: row => <NavLink className="font-semibold hover:underline hover:text-info-light" to={`/projects/${row.id}`}>{row.name}</NavLink>
         },
         {
           name: "Sector",
@@ -26,16 +26,16 @@ const CompanyProfiles = () => {
         },
         {
           name: "Actions",
-          selector: row => <button className="bg-info-light hover:bg-info text-white  px-6 py-1 rounded-lg">Visit</button>
+          selector: row => <button onClick={() => navigate(`/projects/${row.id}`)} className="bg-info-light hover:bg-info text-white  px-6 py-1 rounded-lg">Visit</button>
         },
     ];
 
     return (
         <div className="flex flex-col p-4 gap-6 w-full">
-            <p className="">Project profiles</p>
+            <p className="text-xl font-semibold">Project profiles</p>
             <DataTable data={data.projects} columns={headers} />
         </div>
     )
 }
 
-export default CompanyProfiles;
+export default Projects;

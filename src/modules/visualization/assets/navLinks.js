@@ -5,6 +5,6 @@ export const navLinks = [
     },
     {
         name: "Project profiles",
-        to: "/profiles"
+        to: "/projects"
     }
 ]
