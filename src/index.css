@@ -1,5 +1,23 @@
 @import "tailwindcss";
 
+::-webkit-scrollbar{
+    @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-silk rounded-lg;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-info-light rounded-lg;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-info;
+}
+
+
+
 @theme {
     --color-dusk: rgb(17 24 39 /1);
     --color-coal: rgb(31 41 55 / 1);

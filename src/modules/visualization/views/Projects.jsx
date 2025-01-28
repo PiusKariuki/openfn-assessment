@@ -31,7 +31,7 @@ const Projects = () => {
     ];
 
     return (
-        <div className="flex flex-col p-4 gap-6 w-full">
+        <div className="flex flex-col p-4 gap-6 w-full pr-8">
             <p className="text-xl font-semibold">Project profiles</p>
             <DataTable data={data.projects} columns={headers} />
         </div>

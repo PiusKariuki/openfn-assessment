@@ -8,6 +8,19 @@ export const useProfile = () => {
     const project = data.projects.find(project => project.id === projectID);
     const volunteers = employeesPerProject(projectID);
 
+    let projectWorkLogsByDate = data.logs.filter(log => log.project === projectID).sort((a, b) => new Date(a.date) - new Date(b.date));
+
+
+    projectWorkLogsByDate = projectWorkLogsByDate.reduce((acc, curr) => {
+        if (acc.some(log => log.date === curr.date)) {
+            acc = acc.map(log => log.date === curr.date ? ({...log, hours: log.hours + curr.duration}) : ({...log}));
+            return acc;
+        }
+        acc.push({date: curr.date, hours: curr.duration});
+        return acc;
+    }, []);
+
+
     const headers = [
         {
             name: "Name",
@@ -31,8 +44,8 @@ export const useProfile = () => {
         },
     ];
 
-    const malePercentage = (volunteers.filter(volunteer => volunteer.gender === "male").length / volunteers.length * 100).toFixed(2)
-    const femalePercentage = (volunteers.filter(volunteer => volunteer.gender === "female").length / volunteers.length * 100).toFixed(2)
+    const malePercentage = (volunteers.filter(volunteer => volunteer.gender === "male").length / volunteers.length * 100).toFixed(2);
+    const femalePercentage = (volunteers.filter(volunteer => volunteer.gender === "female").length / volunteers.length * 100).toFixed(2);
     const genderPieChartProps = {
         type: "donut",
         series: [Number(malePercentage), Number(femalePercentage)],
@@ -57,7 +70,51 @@ export const useProfile = () => {
                 }
             }
         }
+    };
+
+    const hoursTimeSeriesProps = {
+        type: "line",
+        series: [
+            {
+                name: "Volunteer hours time series",
+                data: projectWorkLogsByDate.map(log => ({x: log.date, y: log.hours})),
+            }
+        ],
+        options: {
+            chart: {
+                zoom: {
+                    enabled: false
+                }
+            },
+            stroke: {
+                curve: "smooth"
+            },
+            xaxis: {
+                type: "datetime",
+                title: {
+                    text: "Date"
+                }
+            },
+            yaxis: {
+                title: {
+                    text: "Hours"
+                }
+            },
+            tooltip: {
+                x: {
+                    format: "yyyy-mm-dd"
+                }
+            },
+            title: {
+                text: "Volunteer hours over time",
+                align: "center",
+                style: {
+                    fontSize: "20px",
+                    color: "#FFFFFF"
+                }
+            }
+        }
     }
 
-    return {volunteers, headers, project, genderPieChartProps};
+    return {volunteers, headers, project, genderPieChartProps, hoursTimeSeriesProps};
 }

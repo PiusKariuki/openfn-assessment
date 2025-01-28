@@ -45,7 +45,7 @@ const Dashboard = () => {
     ];
 
     return (
-        <div className="flex flex-col p-4 gap-6 w-full">
+        <div className="flex flex-col p-4 gap-6 w-full pr-4">
             <p className="text-xl text-silk font-semibold">OpenFN Dashboard</p>
             <div className="flex w-full">
                 <FNSelect value={filters.sector} label="Sectors" options={sectors} changeHandler={handleSectorChange}/>
