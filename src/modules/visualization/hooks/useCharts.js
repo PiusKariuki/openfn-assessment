@@ -118,7 +118,7 @@ export const useCharts = () => {
                 }
             },
             title: {
-                text: "Employees hours per project",
+                text: "Employees numbers per project",
                 align: "center",
                 style: {
                     color: "#FFFFFF",
