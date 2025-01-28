@@ -1,4 +1,4 @@
-import {BarChart} from "./charts/BarChart.jsx";
+import {ChartWrapper} from "./charts/ChartWrapper.jsx";
 import {useCharts} from "../hooks/useCharts.js";
 
 export const DashboardBody = () => {
@@ -6,8 +6,8 @@ export const DashboardBody = () => {
 
     return (
         <div className="grid grid-cols-2 gap-8 w-full">
-            <BarChart {...hoursPerCompanyProps} />
-            <BarChart {...employeePerCompanyProps} />
+            <ChartWrapper {...hoursPerCompanyProps} />
+            <ChartWrapper {...employeePerCompanyProps} />
         </div>
     )
 }

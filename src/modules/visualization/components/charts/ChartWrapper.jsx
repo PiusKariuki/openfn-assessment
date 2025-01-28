@@ -1,10 +1,10 @@
 import Chart from "react-apexcharts";
 
-export const BarChart = (props) => {
+export const ChartWrapper = (props) => {
 
     return(
         <div className="chart-wrapper">
-            <Chart {...props} h={48} />
+            <Chart {...props} />
         </div>
     )
 }
