@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+    --color-dusk: rgb(17 24 39 /1);
+    --color-coal: rgb(31 41 55 / 1);
+    --color-info: rgb(97 20 55 / 1);
+    --color-info-light: rgb(255 115 160 / 1);
+    --color-smoke: rgb(156 163 175 / 1);
+    --color-silk: #e5e7eb;
+}
+
+body {
+    @apply bg-dusk text-white;
+}
+
+@layer components {
+    .link {
+        @apply px-4 py-2;
+    }
+
+    .active-link {
+        @apply bg-info text-white text-sm font-semibold rounded-md px-4 py-1;
+    }
+}
