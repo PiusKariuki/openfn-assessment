@@ -136,7 +136,7 @@ export const useCharts = () => {
                     formatter: value => `Hours: ${value}`
                 },
                 theme: "dark",
-            }
+            },
         },
         series: [
             {

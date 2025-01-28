@@ -4,7 +4,7 @@ export const BarChart = (props) => {
 
     return(
         <div className="chart-wrapper">
-            <Chart {...props} h={48}/>
+            <Chart {...props} h={48} />
         </div>
     )
 }
